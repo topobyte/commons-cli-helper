@@ -30,3 +30,19 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 artifacts {
     archives sourcesJar
 }
+
+def POM_DESCRIPTION=new File('pom.description').text.trim()
+
+afterEvaluate { project ->
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                pom.project {
+                    name POM_NAME
+                    description POM_DESCRIPTION
+                    url POM_URL
+                }
+            }
+        }
+    }
+}

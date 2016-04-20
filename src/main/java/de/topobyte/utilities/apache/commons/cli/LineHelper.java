@@ -18,7 +18,10 @@
 package de.topobyte.utilities.apache.commons.cli;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.cli.CommandLine;
 
@@ -42,6 +45,29 @@ public class LineHelper
 			args.add(argument);
 		}
 		return args;
+	}
+
+	/**
+	 * Of a collection of specified option names, find those options that are
+	 * present in the {@link CommandLine} argument.
+	 * 
+	 * @param line
+	 *            the command line to inspect.
+	 * @param options
+	 *            the option names to look for.
+	 * @return the {@link Set} of option names present in the command line
+	 *         parameter, a subset of the <code>options</code> supplied.
+	 */
+	public static Set<String> findOptions(CommandLine line,
+			Collection<String> options)
+	{
+		Set<String> results = new HashSet<>();
+		for (String option : options) {
+			if (line.hasOption(option)) {
+				results.add(option);
+			}
+		}
+		return results;
 	}
 
 }

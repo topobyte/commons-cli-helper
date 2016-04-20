@@ -37,7 +37,7 @@ public class LineHelper
 	public static List<String> getRemainingArguments(CommandLine line)
 	{
 		String[] arguments = line.getArgs();
-		List<String> args = new ArrayList<String>();
+		List<String> args = new ArrayList<>();
 		for (String argument : arguments) {
 			args.add(argument);
 		}

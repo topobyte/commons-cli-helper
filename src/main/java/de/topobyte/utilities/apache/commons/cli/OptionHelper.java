@@ -59,6 +59,32 @@ public class OptionHelper
 	 *            the options to add to.
 	 * @param opt
 	 *            the option name.
+	 * @param longName
+	 *            the long option name.
+	 * @param hasArg
+	 *            whether it expects an argument
+	 * @param required
+	 *            whether this is a required option.
+	 * @param description
+	 *            the option description
+	 * @return the Option object created.
+	 */
+	public static Option add(Options options, String opt, String longName,
+			boolean hasArg, boolean required, String description)
+	{
+		Option option = new Option(opt, longName, hasArg, description);
+		option.setRequired(required);
+		options.addOption(option);
+		return option;
+	}
+
+	/**
+	 * Add an option to the options specified by parameters
+	 * 
+	 * @param options
+	 *            the options to add to.
+	 * @param opt
+	 *            the option name.
 	 * @param hasArg
 	 *            whether it expects an argument
 	 * @param required
@@ -73,6 +99,35 @@ public class OptionHelper
 			boolean required, String argName, String description)
 	{
 		Option option = new Option(opt, hasArg, description);
+		option.setRequired(required);
+		option.setArgName(argName);
+		options.addOption(option);
+		return option;
+	}
+
+	/**
+	 * Add an option to the options specified by parameters
+	 * 
+	 * @param options
+	 *            the options to add to.
+	 * @param opt
+	 *            the option name.
+	 * @param longName
+	 *            the long option name.
+	 * @param hasArg
+	 *            whether it expects an argument
+	 * @param required
+	 *            whether this is a required option.
+	 * @param argName
+	 *            the name of the argument.
+	 * @param description
+	 *            the option description
+	 * @return the Option object created.
+	 */
+	public static Option add(Options options, String opt, String longName,
+			boolean hasArg, boolean required, String argName, String description)
+	{
+		Option option = new Option(opt, longName, hasArg, description);
 		option.setRequired(required);
 		option.setArgName(argName);
 		options.addOption(option);

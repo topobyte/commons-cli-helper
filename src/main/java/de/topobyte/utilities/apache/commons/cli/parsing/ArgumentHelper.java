@@ -63,6 +63,16 @@ public class ArgumentHelper
 		}
 	}
 
+	public static long parseLong(String value) throws ArgumentParseException
+	{
+		try {
+			return Long.parseLong(value);
+		} catch (NumberFormatException e) {
+			throw new ArgumentParseException("unable to parse long: '" + value
+					+ "'");
+		}
+	}
+
 	public static BooleanOption getBoolean(CommandLine line, String option)
 			throws ArgumentParseException
 	{
@@ -111,6 +121,32 @@ public class ArgumentHelper
 		for (String value : values) {
 			int num = parseInteger(value);
 			options.add(new IntegerOption(true, num));
+		}
+		return options;
+	}
+
+	public static LongOption getLong(CommandLine line, String option)
+			throws ArgumentParseException
+	{
+		String value = line.getOptionValue(option);
+		if (value == null) {
+			return new LongOption(false);
+		}
+		long num = parseLong(value);
+		return new LongOption(true, num);
+	}
+
+	public static List<LongOption> getLongs(CommandLine line, String option)
+			throws ArgumentParseException
+	{
+		String[] values = line.getOptionValues(option);
+		if (values == null) {
+			return new ArrayList<>();
+		}
+		List<LongOption> options = new ArrayList<>();
+		for (String value : values) {
+			long num = parseLong(value);
+			options.add(new LongOption(true, num));
 		}
 		return options;
 	}

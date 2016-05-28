@@ -15,6 +15,7 @@ import de.topobyte.utilities.apache.commons.cli.parsing.ArgumentHelper;
 import de.topobyte.utilities.apache.commons.cli.parsing.ArgumentParseException;
 import de.topobyte.utilities.apache.commons.cli.parsing.BooleanOption;
 import de.topobyte.utilities.apache.commons.cli.parsing.IntegerOption;
+import de.topobyte.utilities.apache.commons.cli.parsing.LongOption;
 import de.topobyte.utilities.apache.commons.cli.parsing.StringOption;
 
 public class TestMulti
@@ -90,6 +91,31 @@ public class TestMulti
 		assertEquals(20, bar.getValue());
 
 		List<IntegerOption> bars = ArgumentHelper.getIntegers(line, "bar");
+		assertEquals(2, bars.size());
+		assertEquals(20, bars.get(0).getValue());
+		assertEquals(30, bars.get(1).getValue());
+	}
+
+	@Test
+	public void testLong() throws ParseException, ArgumentParseException
+	{
+		Options options = new Options();
+		OptionHelper.add(options, "foo", true, true, "an option");
+		OptionHelper.add(options, "bar", true, true, "another option");
+
+		String[] arguments = new String[] { "-foo", "10", "-bar", "20", "-bar",
+				"30" };
+		CommandLine line = new DefaultParser().parse(options, arguments);
+
+		LongOption foo = ArgumentHelper.getLong(line, "foo");
+		LongOption bar = ArgumentHelper.getLong(line, "bar");
+
+		assertTrue(foo.hasValue());
+		assertTrue(bar.hasValue());
+		assertEquals(10, foo.getValue());
+		assertEquals(20, bar.getValue());
+
+		List<LongOption> bars = ArgumentHelper.getLongs(line, "bar");
 		assertEquals(2, bars.size());
 		assertEquals(20, bars.get(0).getValue());
 		assertEquals(30, bars.get(1).getValue());

@@ -14,6 +14,7 @@ import org.junit.Test;
 import de.topobyte.utilities.apache.commons.cli.parsing.ArgumentHelper;
 import de.topobyte.utilities.apache.commons.cli.parsing.ArgumentParseException;
 import de.topobyte.utilities.apache.commons.cli.parsing.BooleanOption;
+import de.topobyte.utilities.apache.commons.cli.parsing.DoubleOption;
 import de.topobyte.utilities.apache.commons.cli.parsing.IntegerOption;
 import de.topobyte.utilities.apache.commons.cli.parsing.LongOption;
 import de.topobyte.utilities.apache.commons.cli.parsing.StringOption;
@@ -119,6 +120,31 @@ public class TestMulti
 		assertEquals(2, bars.size());
 		assertEquals(20, bars.get(0).getValue());
 		assertEquals(30, bars.get(1).getValue());
+	}
+
+	@Test
+	public void testDouble() throws ParseException, ArgumentParseException
+	{
+		Options options = new Options();
+		OptionHelper.add(options, "foo", true, true, "an option");
+		OptionHelper.add(options, "bar", true, true, "another option");
+
+		String[] arguments = new String[] { "-foo", "10.1", "-bar", "20.2",
+				"-bar", "30.303" };
+		CommandLine line = new DefaultParser().parse(options, arguments);
+
+		DoubleOption foo = ArgumentHelper.getDouble(line, "foo");
+		DoubleOption bar = ArgumentHelper.getDouble(line, "bar");
+
+		assertTrue(foo.hasValue());
+		assertTrue(bar.hasValue());
+		assertEquals(10.1, foo.getValue(), 0);
+		assertEquals(20.2, bar.getValue(), 0);
+
+		List<DoubleOption> bars = ArgumentHelper.getDoubles(line, "bar");
+		assertEquals(2, bars.size());
+		assertEquals(20.2, bars.get(0).getValue(), 0);
+		assertEquals(30.303, bars.get(1).getValue(), 0);
 	}
 
 }

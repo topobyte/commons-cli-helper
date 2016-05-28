@@ -73,6 +73,17 @@ public class ArgumentHelper
 		}
 	}
 
+	public static double parseDouble(String value)
+			throws ArgumentParseException
+	{
+		try {
+			return Double.parseDouble(value);
+		} catch (NumberFormatException e) {
+			throw new ArgumentParseException("unable to parse double: '"
+					+ value + "'");
+		}
+	}
+
 	public static BooleanOption getBoolean(CommandLine line, String option)
 			throws ArgumentParseException
 	{
@@ -147,6 +158,32 @@ public class ArgumentHelper
 		for (String value : values) {
 			long num = parseLong(value);
 			options.add(new LongOption(true, num));
+		}
+		return options;
+	}
+
+	public static DoubleOption getDouble(CommandLine line, String option)
+			throws ArgumentParseException
+	{
+		String value = line.getOptionValue(option);
+		if (value == null) {
+			return new DoubleOption(false);
+		}
+		Double num = parseDouble(value);
+		return new DoubleOption(true, num);
+	}
+
+	public static List<DoubleOption> getDoubles(CommandLine line, String option)
+			throws ArgumentParseException
+	{
+		String[] values = line.getOptionValues(option);
+		if (values == null) {
+			return new ArrayList<>();
+		}
+		List<DoubleOption> options = new ArrayList<>();
+		for (String value : values) {
+			Double num = parseDouble(value);
+			options.add(new DoubleOption(true, num));
 		}
 		return options;
 	}

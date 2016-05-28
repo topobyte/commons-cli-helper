@@ -16,7 +16,7 @@ public class TestBasic
 {
 
 	@Test
-	public void main() throws ParseException
+	public void test() throws ParseException
 	{
 		Options options = new Options();
 		OptionHelper.add(options, "foo", true, true, "an option");

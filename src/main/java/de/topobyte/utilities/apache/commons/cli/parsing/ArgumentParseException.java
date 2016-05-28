@@ -15,27 +15,16 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with commons-cli-helper. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.utilities.apache.commons.cli;
+package de.topobyte.utilities.apache.commons.cli.parsing;
 
-public class BooleanOption extends BaseOption
+public class ArgumentParseException extends Exception
 {
 
-	private boolean value;
+	private static final long serialVersionUID = 2261760315719087238L;
 
-	public BooleanOption(boolean hasValue)
+	public ArgumentParseException(String message)
 	{
-		super(hasValue);
-	}
-
-	public BooleanOption(boolean hasValue, boolean value)
-	{
-		super(hasValue);
-		this.value = value;
-	}
-
-	public boolean getValue()
-	{
-		return value;
+		super(message);
 	}
 
 }

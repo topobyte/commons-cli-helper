@@ -15,16 +15,28 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with commons-cli-helper. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.utilities.apache.commons.cli;
+package de.topobyte.utilities.apache.commons.cli.parsing;
 
-public class ArgumentParseException extends Exception
+
+public class IntegerOption extends BaseOption
 {
 
-	private static final long serialVersionUID = 2261760315719087238L;
+	private int value;
 
-	public ArgumentParseException(String message)
+	public IntegerOption(boolean hasValue)
 	{
-		super(message);
+		super(hasValue);
+	}
+
+	public IntegerOption(boolean hasValue, int value)
+	{
+		super(hasValue);
+		this.value = value;
+	}
+
+	public int getValue()
+	{
+		return value;
 	}
 
 }

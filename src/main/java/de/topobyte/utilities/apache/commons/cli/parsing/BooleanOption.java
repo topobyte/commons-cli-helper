@@ -15,21 +15,28 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with commons-cli-helper. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.utilities.apache.commons.cli;
+package de.topobyte.utilities.apache.commons.cli.parsing;
 
-public class BaseOption
+
+public class BooleanOption extends BaseOption
 {
 
-	private boolean hasValue;
+	private boolean value;
 
-	public BaseOption(boolean hasValue)
+	public BooleanOption(boolean hasValue)
 	{
-		this.hasValue = hasValue;
+		super(hasValue);
 	}
 
-	public boolean hasValue()
+	public BooleanOption(boolean hasValue, boolean value)
 	{
-		return hasValue;
+		super(hasValue);
+		this.value = value;
+	}
+
+	public boolean getValue()
+	{
+		return value;
 	}
 
 }

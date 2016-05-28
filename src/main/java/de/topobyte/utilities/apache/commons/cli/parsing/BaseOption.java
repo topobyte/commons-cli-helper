@@ -15,27 +15,21 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with commons-cli-helper. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.utilities.apache.commons.cli;
+package de.topobyte.utilities.apache.commons.cli.parsing;
 
-public class IntegerOption extends BaseOption
+public class BaseOption
 {
 
-	private int value;
+	private boolean hasValue;
 
-	public IntegerOption(boolean hasValue)
+	public BaseOption(boolean hasValue)
 	{
-		super(hasValue);
+		this.hasValue = hasValue;
 	}
 
-	public IntegerOption(boolean hasValue, int value)
+	public boolean hasValue()
 	{
-		super(hasValue);
-		this.value = value;
-	}
-
-	public int getValue()
-	{
-		return value;
+		return hasValue;
 	}
 
 }

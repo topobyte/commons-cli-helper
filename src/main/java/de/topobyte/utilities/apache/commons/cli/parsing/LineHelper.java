@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with commons-cli-helper. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.utilities.apache.commons.cli;
+package de.topobyte.utilities.apache.commons.cli.parsing;
 
 import java.util.ArrayList;
 import java.util.Collection;

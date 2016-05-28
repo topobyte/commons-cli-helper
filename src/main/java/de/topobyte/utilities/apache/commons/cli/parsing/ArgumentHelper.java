@@ -17,6 +17,9 @@
 
 package de.topobyte.utilities.apache.commons.cli.parsing;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.cli.CommandLine;
 
 public class ArgumentHelper
@@ -71,6 +74,21 @@ public class ArgumentHelper
 		return new BooleanOption(true, bool);
 	}
 
+	public static List<BooleanOption> getBooleans(CommandLine line,
+			String option) throws ArgumentParseException
+	{
+		String[] values = line.getOptionValues(option);
+		if (values == null) {
+			return new ArrayList<>();
+		}
+		List<BooleanOption> options = new ArrayList<>();
+		for (String value : values) {
+			boolean bool = parseBoolean(value);
+			options.add(new BooleanOption(true, bool));
+		}
+		return options;
+	}
+
 	public static IntegerOption getInteger(CommandLine line, String option)
 			throws ArgumentParseException
 	{
@@ -82,6 +100,21 @@ public class ArgumentHelper
 		return new IntegerOption(true, num);
 	}
 
+	public static List<IntegerOption> getIntegers(CommandLine line,
+			String option) throws ArgumentParseException
+	{
+		String[] values = line.getOptionValues(option);
+		if (values == null) {
+			return new ArrayList<>();
+		}
+		List<IntegerOption> options = new ArrayList<>();
+		for (String value : values) {
+			int num = parseInteger(value);
+			options.add(new IntegerOption(true, num));
+		}
+		return options;
+	}
+
 	public static StringOption getString(CommandLine line, String option)
 	{
 		String value = line.getOptionValue(option);
@@ -89,6 +122,19 @@ public class ArgumentHelper
 			return new StringOption(false);
 		}
 		return new StringOption(true, value);
+	}
+
+	public static List<StringOption> getStrings(CommandLine line, String option)
+	{
+		String[] values = line.getOptionValues(option);
+		if (values == null) {
+			return new ArrayList<>();
+		}
+		List<StringOption> options = new ArrayList<>();
+		for (String value : values) {
+			options.add(new StringOption(true, value));
+		}
+		return options;
 	}
 
 }

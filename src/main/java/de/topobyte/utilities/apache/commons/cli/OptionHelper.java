@@ -23,7 +23,7 @@ import org.apache.commons.cli.Options;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  * 
- *         Utility functions for commons CLI.
+ *         Utility methods for commons CLI.
  */
 public class OptionHelper
 {

@@ -25,6 +25,11 @@ import java.util.Set;
 
 import org.apache.commons.cli.CommandLine;
 
+/**
+ * @author Sebastian Kuerten (sebastian@topobyte.de)
+ * 
+ *         Utility methods for working with {@link CommandLine} instances.
+ */
 public class LineHelper
 {
 

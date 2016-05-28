@@ -22,6 +22,11 @@ import java.util.List;
 
 import org.apache.commons.cli.CommandLine;
 
+/**
+ * @author Sebastian Kuerten (sebastian@topobyte.de)
+ * 
+ *         Utility methods for parsing arguments
+ */
 public class ArgumentHelper
 {
 

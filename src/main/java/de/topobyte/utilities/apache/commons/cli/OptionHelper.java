@@ -29,12 +29,12 @@ public class OptionHelper
 {
 
 	/**
-	 * Add an option to the options specified by parameters
+	 * Add a short option to the options specified by parameters
 	 * 
 	 * @param options
 	 *            the options to add to.
 	 * @param opt
-	 *            the option name.
+	 *            the short option name.
 	 * @param hasArg
 	 *            whether it expects an argument
 	 * @param required
@@ -43,11 +43,89 @@ public class OptionHelper
 	 *            the option description
 	 * @return the Option object created.
 	 */
-	public static Option add(Options options, String opt, boolean hasArg,
+	public static Option addS(Options options, String opt, boolean hasArg,
 			boolean required, String description)
 	{
 		Option option = new Option(opt, hasArg, description);
 		option.setRequired(required);
+		options.addOption(option);
+		return option;
+	}
+
+	/**
+	 * Add a short option to the options specified by parameters
+	 * 
+	 * @param options
+	 *            the options to add to.
+	 * @param opt
+	 *            the short option name.
+	 * @param hasArg
+	 *            whether it expects an argument
+	 * @param required
+	 *            whether this is a required option.
+	 * @param argName
+	 *            the name of the argument.
+	 * @param description
+	 *            the option description
+	 * @return the Option object created.
+	 */
+	public static Option addS(Options options, String opt, boolean hasArg,
+			boolean required, String argName, String description)
+	{
+		Option option = new Option(opt, hasArg, description);
+		option.setRequired(required);
+		option.setArgName(argName);
+		options.addOption(option);
+		return option;
+	}
+
+	/**
+	 * Add a long option to the options specified by parameters
+	 * 
+	 * @param options
+	 *            the options to add to.
+	 * @param longName
+	 *            the long option name.
+	 * @param hasArg
+	 *            whether it expects an argument
+	 * @param required
+	 *            whether this is a required option.
+	 * @param description
+	 *            the option description
+	 * @return the Option object created.
+	 */
+	public static Option addL(Options options, String longName, boolean hasArg,
+			boolean required, String description)
+	{
+		Option option = new Option(null, longName, hasArg, description);
+		option.setRequired(required);
+		options.addOption(option);
+		return option;
+	}
+
+	/**
+	 * Add a long option to the options specified by parameters
+	 * 
+	 * @param options
+	 *            the options to add to.
+	 * @param longName
+	 *            the long option name.
+	 * @param hasArg
+	 *            whether it expects an argument
+	 * @param required
+	 *            whether this is a required option.
+	 * @param argName
+	 *            the name of the argument.
+	 * @param description
+	 *            the option description
+	 * @return the Option object created.
+	 */
+	public static Option addL(Options options, String longName, boolean hasArg,
+			boolean required, String argName, String description)
+	{
+		Option option = new Option(null, longName, hasArg, description);
+		option.setRequired(required);
+		option.setArgName(argName);
 		options.addOption(option);
 		return option;
 	}
@@ -58,7 +136,7 @@ public class OptionHelper
 	 * @param options
 	 *            the options to add to.
 	 * @param opt
-	 *            the option name.
+	 *            the short option name.
 	 * @param longName
 	 *            the long option name.
 	 * @param hasArg
@@ -84,34 +162,7 @@ public class OptionHelper
 	 * @param options
 	 *            the options to add to.
 	 * @param opt
-	 *            the option name.
-	 * @param hasArg
-	 *            whether it expects an argument
-	 * @param required
-	 *            whether this is a required option.
-	 * @param argName
-	 *            the name of the argument.
-	 * @param description
-	 *            the option description
-	 * @return the Option object created.
-	 */
-	public static Option add(Options options, String opt, boolean hasArg,
-			boolean required, String argName, String description)
-	{
-		Option option = new Option(opt, hasArg, description);
-		option.setRequired(required);
-		option.setArgName(argName);
-		options.addOption(option);
-		return option;
-	}
-
-	/**
-	 * Add an option to the options specified by parameters
-	 * 
-	 * @param options
-	 *            the options to add to.
-	 * @param opt
-	 *            the option name.
+	 *            the short option name.
 	 * @param longName
 	 *            the long option name.
 	 * @param hasArg

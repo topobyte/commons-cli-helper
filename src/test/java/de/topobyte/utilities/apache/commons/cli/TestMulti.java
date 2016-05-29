@@ -26,8 +26,8 @@ public class TestMulti
 	public void testString() throws ParseException
 	{
 		Options options = new Options();
-		OptionHelper.add(options, "foo", true, true, "an option");
-		OptionHelper.add(options, "bar", true, true, "another option");
+		OptionHelper.addS(options, "foo", true, true, "an option");
+		OptionHelper.addS(options, "bar", true, true, "another option");
 
 		String[] arguments = new String[] { "-foo", "asdf", "-bar", "test",
 				"-bar", "more" };
@@ -51,8 +51,8 @@ public class TestMulti
 	public void testBoolean() throws ParseException, ArgumentParseException
 	{
 		Options options = new Options();
-		OptionHelper.add(options, "foo", true, true, "an option");
-		OptionHelper.add(options, "bar", true, true, "another option");
+		OptionHelper.addS(options, "foo", true, true, "an option");
+		OptionHelper.addS(options, "bar", true, true, "another option");
 
 		String[] arguments = new String[] { "-foo", "true", "-bar", "true",
 				"-bar", "false" };
@@ -76,8 +76,8 @@ public class TestMulti
 	public void testInteger() throws ParseException, ArgumentParseException
 	{
 		Options options = new Options();
-		OptionHelper.add(options, "foo", true, true, "an option");
-		OptionHelper.add(options, "bar", true, true, "another option");
+		OptionHelper.addS(options, "foo", true, true, "an option");
+		OptionHelper.addS(options, "bar", true, true, "another option");
 
 		String[] arguments = new String[] { "-foo", "10", "-bar", "20", "-bar",
 				"30" };
@@ -101,8 +101,8 @@ public class TestMulti
 	public void testLong() throws ParseException, ArgumentParseException
 	{
 		Options options = new Options();
-		OptionHelper.add(options, "foo", true, true, "an option");
-		OptionHelper.add(options, "bar", true, true, "another option");
+		OptionHelper.addS(options, "foo", true, true, "an option");
+		OptionHelper.addS(options, "bar", true, true, "another option");
 
 		String[] arguments = new String[] { "-foo", "10", "-bar", "20", "-bar",
 				"30" };
@@ -126,8 +126,8 @@ public class TestMulti
 	public void testDouble() throws ParseException, ArgumentParseException
 	{
 		Options options = new Options();
-		OptionHelper.add(options, "foo", true, true, "an option");
-		OptionHelper.add(options, "bar", true, true, "another option");
+		OptionHelper.addS(options, "foo", true, true, "an option");
+		OptionHelper.addS(options, "bar", true, true, "another option");
 
 		String[] arguments = new String[] { "-foo", "10.1", "-bar", "20.2",
 				"-bar", "30.303" };

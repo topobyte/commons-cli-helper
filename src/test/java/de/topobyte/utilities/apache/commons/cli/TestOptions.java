@@ -44,8 +44,8 @@ public class TestOptions
 	public void testLongOnly() throws ParseException
 	{
 		Options options = new Options();
-		OptionHelper.add(options, null, "foo-boo", true, true, "an option");
-		OptionHelper.add(options, null, "bar-bar", true, true, "option 2");
+		OptionHelper.addL(options, "foo-boo", true, true, "an option");
+		OptionHelper.addL(options, "bar-bar", true, true, "option 2");
 
 		String[] arguments = new String[] { "-foo-boo", "asdf", "--bar-bar",
 				"test" };

@@ -19,8 +19,8 @@ public class TestBasic
 	public void test() throws ParseException
 	{
 		Options options = new Options();
-		OptionHelper.add(options, "foo", true, true, "an option");
-		OptionHelper.add(options, "bar", true, true, "another option");
+		OptionHelper.addL(options, "foo", true, true, "an option");
+		OptionHelper.addL(options, "bar", true, true, "another option");
 
 		String[] arguments = new String[] { "-foo", "asdf", "-bar", "test" };
 		CommandLine line = new DefaultParser().parse(options, arguments);

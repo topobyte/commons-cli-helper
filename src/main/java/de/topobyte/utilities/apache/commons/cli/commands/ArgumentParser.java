@@ -38,10 +38,18 @@ public class ArgumentParser
 	private String name;
 	private ExeOptions options;
 
+	private ErrorHandlingStrategy errorHandlingStrategy = ErrorHandlingStrategy.EXIT;
+
 	public ArgumentParser(String name, ExeOptions options)
 	{
 		this.name = name;
 		this.options = options;
+	}
+
+	public void setErrorHandlingStrategy(
+			ErrorHandlingStrategy errorHandlingStrategy)
+	{
+		this.errorHandlingStrategy = errorHandlingStrategy;
 	}
 
 	public ExecutionData parse(String[] args)
@@ -49,8 +57,7 @@ public class ArgumentParser
 		try {
 			return parse(name, args, null);
 		} catch (ArgumentParseException e) {
-			System.out.println(e.getMessage());
-			options.usage(name);
+			error(e, options, name);
 			return null;
 		}
 	}
@@ -78,8 +85,9 @@ public class ArgumentParser
 		return new ExecutionData(name, arguments, delegate);
 	}
 
-	private ExecutionData parse(String name, CommonsCliExeOptions commonsOptions,
-			String[] args, Delegate delegate)
+	private ExecutionData parse(String name,
+			CommonsCliExeOptions commonsOptions, String[] args,
+			Delegate delegate)
 	{
 		Options options = commonsOptions.getOptions();
 		try {
@@ -87,8 +95,7 @@ public class ArgumentParser
 			CommonsCliArguments arguments = new CommonsCliArguments(line);
 			return new ExecutionData(name, arguments, delegate);
 		} catch (ParseException e) {
-			System.out.println(e.getMessage());
-			commonsOptions.usage(name);
+			error(e, commonsOptions, name);
 			return null;
 		}
 	}
@@ -109,16 +116,26 @@ public class ArgumentParser
 			taskArgs[i] = args[i + 1];
 		}
 
-		ExeOptionsFactory subOptions = delegateOptions.getSubOptions(task);
+		ExeOptionsFactory subOptionsFactory = delegateOptions
+				.getSubOptions(task);
+		ExeOptions subOptions = subOptionsFactory.createOptions();
 		Delegate nextDelegate = delegateOptions.getDelegate(task);
 		String subName = name + " " + task;
-		ArgumentParser subParser = new ArgumentParser(subName, subOptions.createOptions());
+		ArgumentParser subParser = new ArgumentParser(subName, subOptions);
 		try {
 			return subParser.parse(subName, taskArgs, nextDelegate);
 		} catch (ArgumentParseException e) {
-			System.out.println(e.getMessage());
-			subOptions.createOptions().usage(subName);
+			error(e, subOptions, subName);
 			return null;
+		}
+	}
+
+	private void error(Exception e, ExeOptions exeOptions, String name)
+	{
+		System.out.println(e.getMessage());
+		exeOptions.usage(name);
+		if (errorHandlingStrategy == ErrorHandlingStrategy.EXIT) {
+			System.exit(1);
 		}
 	}
 

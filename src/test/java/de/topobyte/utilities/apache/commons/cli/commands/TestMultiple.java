@@ -45,6 +45,7 @@ public class TestMultiple
 	{
 		ExeOptions options = Git.OPTIONS_FACTORY.createOptions();
 		ArgumentParser parser = new ArgumentParser("git", options);
+		parser.setErrorHandlingStrategy(ErrorHandlingStrategy.CONTINUE);
 		System.out.println(
 				String.format("*** Testing with %s", Arrays.asList(args)));
 

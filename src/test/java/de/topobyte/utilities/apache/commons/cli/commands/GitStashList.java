@@ -17,7 +17,12 @@
 
 package de.topobyte.utilities.apache.commons.cli.commands;
 
+import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Options;
+
+import de.topobyte.utilities.apache.commons.cli.commands.options.CommonsCliExeOptions;
+import de.topobyte.utilities.apache.commons.cli.commands.options.ExeOptions;
+import de.topobyte.utilities.apache.commons.cli.commands.options.ExeOptionsFactory;
 
 public class GitStashList
 {
@@ -32,5 +37,10 @@ public class GitStashList
 		}
 
 	};
+
+	public static void main(String name, CommandLine line)
+	{
+		System.out.println(String.format("This is '%s'", name));
+	}
 
 }

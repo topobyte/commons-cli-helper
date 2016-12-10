@@ -17,7 +17,7 @@
 
 package de.topobyte.utilities.apache.commons.cli.commands;
 
-import de.topobyte.utilities.apache.commons.cli.parsing.ArgumentParseException;
+import de.topobyte.utilities.apache.commons.cli.commands.options.ExeOptions;
 
 public class TestDelegateInvalidArg
 {
@@ -25,13 +25,9 @@ public class TestDelegateInvalidArg
 	public static void main(String[] args)
 	{
 		ExeOptions options = Git.OPTIONS_FACTORY.createOptions();
-		Parser parser = new Parser("git", options);
+		ArgumentParser parser = new ArgumentParser("git", options);
 		args = new String[] { "foo" };
-		try {
-			parser.parse(args);
-		} catch (ArgumentParseException e) {
-			System.out.println(e.getMessage());
-		}
+		parser.parse(args);
 	}
 
 }

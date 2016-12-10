@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with commons-cli-helper. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.utilities.apache.commons.cli.commands;
+package de.topobyte.utilities.apache.commons.cli.commands.options;
 
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;

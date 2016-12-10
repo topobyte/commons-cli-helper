@@ -17,7 +17,11 @@
 
 package de.topobyte.utilities.apache.commons.cli.commands;
 
-import org.apache.commons.cli.Options;
+import java.util.Arrays;
+
+import de.topobyte.utilities.apache.commons.cli.commands.options.BasicExeOptions;
+import de.topobyte.utilities.apache.commons.cli.commands.options.ExeOptions;
+import de.topobyte.utilities.apache.commons.cli.commands.options.ExeOptionsFactory;
 
 public class GitStashShow
 {
@@ -27,10 +31,15 @@ public class GitStashShow
 		@Override
 		public ExeOptions createOptions()
 		{
-			Options options = new Options();
-			return new CommonsCliExeOptions(options);
+			return new BasicExeOptions();
 		}
 
 	};
+
+	public static void main(String name, String[] args)
+	{
+		System.out.println(String.format("This is '%s'", name));
+		System.out.println("args: " + Arrays.asList(args));
+	}
 
 }

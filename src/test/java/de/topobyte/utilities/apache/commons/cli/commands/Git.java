@@ -17,6 +17,10 @@
 
 package de.topobyte.utilities.apache.commons.cli.commands;
 
+import de.topobyte.utilities.apache.commons.cli.commands.options.DelegateExeOptions;
+import de.topobyte.utilities.apache.commons.cli.commands.options.ExeOptions;
+import de.topobyte.utilities.apache.commons.cli.commands.options.ExeOptionsFactory;
+
 public class Git
 {
 
@@ -26,9 +30,8 @@ public class Git
 		public ExeOptions createOptions()
 		{
 			DelegateExeOptions options = new DelegateExeOptions();
-			options.addCommand("remote", GitRemote.OPTIONS_FACTORY,
-					GitRemote.class);
-			options.addCommand("stash", null, GitStash.class);
+			options.addCommand("remote", GitRemote.OPTIONS_FACTORY);
+			options.addCommand("stash", GitStash.OPTIONS_FACTORY);
 			return options;
 		}
 

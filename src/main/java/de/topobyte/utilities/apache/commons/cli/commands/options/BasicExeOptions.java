@@ -15,32 +15,33 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with commons-cli-helper. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.utilities.apache.commons.cli.commands;
+package de.topobyte.utilities.apache.commons.cli.commands.options;
 
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.Options;
-
-import de.topobyte.utilities.apache.commons.cli.commands.options.CommonsCliExeOptions;
-import de.topobyte.utilities.apache.commons.cli.commands.options.ExeOptions;
-import de.topobyte.utilities.apache.commons.cli.commands.options.ExeOptionsFactory;
-
-public class GitRemoteRename
+public class BasicExeOptions implements ExeOptions
 {
 
-	public static ExeOptionsFactory OPTIONS_FACTORY = new ExeOptionsFactory() {
+	private String usage;
 
-		@Override
-		public ExeOptions createOptions()
-		{
-			Options options = new Options();
-			return new CommonsCliExeOptions(options);
-		}
-
-	};
-
-	public static void main(String name, CommandLine line)
+	public BasicExeOptions()
 	{
-		System.out.println(String.format("This is '%s'", name));
+		this(null);
+	}
+
+	public BasicExeOptions(String usage)
+	{
+		this.usage = usage;
+	}
+
+	@Override
+	public void usage(String name)
+	{
+		String syntax;
+		if (usage == null) {
+			syntax = name;
+		} else {
+			syntax = name + " " + usage;
+		}
+		System.out.println(syntax);
 	}
 
 }

@@ -17,6 +17,10 @@
 
 package de.topobyte.utilities.apache.commons.cli.commands;
 
+import de.topobyte.utilities.apache.commons.cli.commands.options.DelegateExeOptions;
+import de.topobyte.utilities.apache.commons.cli.commands.options.ExeOptions;
+import de.topobyte.utilities.apache.commons.cli.commands.options.ExeOptionsFactory;
+
 public class GitRemote
 {
 

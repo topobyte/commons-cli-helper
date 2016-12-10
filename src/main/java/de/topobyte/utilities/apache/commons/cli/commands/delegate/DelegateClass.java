@@ -15,32 +15,28 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with commons-cli-helper. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.utilities.apache.commons.cli.commands;
+package de.topobyte.utilities.apache.commons.cli.commands.delegate;
 
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.Options;
-
-import de.topobyte.utilities.apache.commons.cli.commands.options.CommonsCliExeOptions;
-import de.topobyte.utilities.apache.commons.cli.commands.options.ExeOptions;
-import de.topobyte.utilities.apache.commons.cli.commands.options.ExeOptionsFactory;
-
-public class GitRemoteRename
+public class DelegateClass implements Delegate
 {
 
-	public static ExeOptionsFactory OPTIONS_FACTORY = new ExeOptionsFactory() {
+	private Class<?> clazz;
+	private boolean passName;
 
-		@Override
-		public ExeOptions createOptions()
-		{
-			Options options = new Options();
-			return new CommonsCliExeOptions(options);
-		}
-
-	};
-
-	public static void main(String name, CommandLine line)
+	public DelegateClass(Class<?> clazz, boolean passName)
 	{
-		System.out.println(String.format("This is '%s'", name));
+		this.clazz = clazz;
+		this.passName = passName;
+	}
+
+	public Class<?> getClazz()
+	{
+		return clazz;
+	}
+
+	public boolean isPassName()
+	{
+		return passName;
 	}
 
 }

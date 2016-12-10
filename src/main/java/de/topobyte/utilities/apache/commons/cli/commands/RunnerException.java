@@ -17,9 +17,29 @@
 
 package de.topobyte.utilities.apache.commons.cli.commands;
 
-public interface ExeOptionsFactory
+public class RunnerException extends Exception
 {
 
-	public ExeOptions createOptions();
+	private static final long serialVersionUID = -5592533777317193446L;
+
+	public RunnerException()
+	{
+		super();
+	}
+
+	public RunnerException(String message)
+	{
+		super(message);
+	}
+
+	public RunnerException(Throwable cause)
+	{
+		super(cause);
+	}
+
+	public RunnerException(String message, Throwable cause)
+	{
+		super(message, cause);
+	}
 
 }

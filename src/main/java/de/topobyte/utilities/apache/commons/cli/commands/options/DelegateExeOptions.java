@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with commons-cli-helper. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.utilities.apache.commons.cli.commands;
+package de.topobyte.utilities.apache.commons.cli.commands.options;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,6 +23,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import de.topobyte.utilities.apache.commons.cli.commands.delegate.Delegate;
+import de.topobyte.utilities.apache.commons.cli.commands.delegate.DelegateClass;
 
 public class DelegateExeOptions implements ExeOptions
 {
@@ -40,6 +43,14 @@ public class DelegateExeOptions implements ExeOptions
 	private Set<String> commandNames = new HashSet<>();
 	private List<String> commands = new ArrayList<>();
 	private Map<String, ExeOptionsFactory> optionFactories = new HashMap<>();
+	private Map<String, Delegate> delegates = new HashMap<>();
+
+	public void addCommand(String command, ExeOptionsFactory delegateOptions)
+	{
+		commandNames.add(command);
+		commands.add(command);
+		optionFactories.put(command, delegateOptions);
+	}
 
 	public void addCommand(String command, ExeOptionsFactory delegateOptions,
 			Class<?> clazz)
@@ -47,6 +58,7 @@ public class DelegateExeOptions implements ExeOptions
 		commandNames.add(command);
 		commands.add(command);
 		optionFactories.put(command, delegateOptions);
+		delegates.put(command, new DelegateClass(clazz, true));
 	}
 
 	public boolean hasSubCommand(String command)
@@ -57,6 +69,11 @@ public class DelegateExeOptions implements ExeOptions
 	public ExeOptionsFactory getSubOptions(String task)
 	{
 		return optionFactories.get(task);
+	}
+
+	public Delegate getDelegate(String task)
+	{
+		return delegates.get(task);
 	}
 
 }

@@ -19,12 +19,12 @@ package de.topobyte.utilities.apache.commons.cli.commands;
 
 import java.util.Arrays;
 
-import de.topobyte.utilities.apache.commons.cli.parsing.ArgumentParseException;
+import de.topobyte.utilities.apache.commons.cli.commands.options.ExeOptions;
 
 public class TestMultiple
 {
 
-	public static void main(String[] args)
+	public static void main(String[] args) throws RunnerException
 	{
 		test(new String[] {});
 		test(new String[] { "remote" });
@@ -33,23 +33,24 @@ public class TestMultiple
 		test(new String[] { "remote", "remove" });
 		test(new String[] { "foo" });
 		test(new String[] { "remote", "foo" });
-		test(new String[] { "remote", "add", "-t", "foo" });
+		test(new String[] { "remote", "add", "-t", "master" });
 		test(new String[] { "remote", "add", "-y" });
 		test(new String[] { "remote", "rename" });
 		test(new String[] { "remote", "rename", "-y" });
+		test(new String[] { "stash", "show" });
+		test(new String[] { "stash", "show", "test" });
 	}
 
-	public static void test(String[] args)
+	public static void test(String[] args) throws RunnerException
 	{
 		ExeOptions options = Git.OPTIONS_FACTORY.createOptions();
-		Parser parser = new Parser("git", options);
+		ArgumentParser parser = new ArgumentParser("git", options);
 		System.out.println(
 				String.format("*** Testing with %s", Arrays.asList(args)));
-		try {
-			parser.parse(args);
-		} catch (ArgumentParseException e) {
-			System.out.println(e.getMessage());
-			options.usage("git");
+
+		ExecutionData data = parser.parse(args);
+		if (data != null) {
+			ExeRunner.run(data);
 		}
 	}
 

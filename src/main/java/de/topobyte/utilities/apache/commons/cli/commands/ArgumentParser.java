@@ -123,6 +123,7 @@ public class ArgumentParser
 		Delegate nextDelegate = delegateOptions.getDelegate(task);
 		String subName = name + " " + task;
 		ArgumentParser subParser = new ArgumentParser(subName, subOptions);
+		subParser.setErrorHandlingStrategy(errorHandlingStrategy);
 		try {
 			return subParser.parse(subName, taskArgs, nextDelegate);
 		} catch (ArgumentParseException e) {

@@ -19,14 +19,23 @@ package de.topobyte.utilities.apache.commons.cli.commands.args;
 
 import org.apache.commons.cli.CommandLine;
 
+import de.topobyte.utilities.apache.commons.cli.commands.options.CommonsCliExeOptions;
+
 public class CommonsCliArguments implements ParsedArguments
 {
 
+	private CommonsCliExeOptions options;
 	private CommandLine line;
 
-	public CommonsCliArguments(CommandLine line)
+	public CommonsCliArguments(CommonsCliExeOptions options, CommandLine line)
 	{
+		this.options = options;
 		this.line = line;
+	}
+
+	public CommonsCliExeOptions getOptions()
+	{
+		return options;
 	}
 
 	public CommandLine getLine()

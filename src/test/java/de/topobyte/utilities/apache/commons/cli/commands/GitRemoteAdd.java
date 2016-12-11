@@ -21,6 +21,7 @@ import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 
+import de.topobyte.utilities.apache.commons.cli.commands.args.CommonsCliArguments;
 import de.topobyte.utilities.apache.commons.cli.commands.options.CommonsCliExeOptions;
 import de.topobyte.utilities.apache.commons.cli.commands.options.ExeOptions;
 import de.topobyte.utilities.apache.commons.cli.commands.options.ExeOptionsFactory;
@@ -38,13 +39,14 @@ public class GitRemoteAdd
 					.desc("branch to track").build());
 			options.addOption(Option.builder("m").hasArg().argName("master")
 					.desc("remote master branch").build());
-			return new CommonsCliExeOptions(options);
+			return new CommonsCliExeOptions(options, "[options]");
 		}
 
 	};
 
-	public static void main(String name, CommandLine line)
+	public static void main(String name, CommonsCliArguments arguments)
 	{
+		CommandLine line = arguments.getLine();
 		System.out.println(String.format("This is '%s'", name));
 		String branch = line.getOptionValue("t");
 		System.out.println("branch: " + branch);

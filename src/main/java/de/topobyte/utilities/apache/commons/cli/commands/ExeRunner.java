@@ -20,8 +20,6 @@ package de.topobyte.utilities.apache.commons.cli.commands;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import org.apache.commons.cli.CommandLine;
-
 import de.topobyte.utilities.apache.commons.cli.commands.args.BasicArguments;
 import de.topobyte.utilities.apache.commons.cli.commands.args.CommonsCliArguments;
 import de.topobyte.utilities.apache.commons.cli.commands.args.ParsedArguments;
@@ -74,16 +72,16 @@ public class ExeRunner
 	private static void run(String name, DelegateClass c,
 			CommonsCliArguments arguments) throws RunnerException
 	{
-		CommandLine line = arguments.getLine();
 		try {
 			Class<?> clazz = c.getClazz();
 			if (!c.isPassName()) {
-				Method method = clazz.getMethod("main", CommandLine.class);
-				method.invoke(null, line);
+				Method method = clazz.getMethod("main",
+						CommonsCliArguments.class);
+				method.invoke(null, arguments);
 			} else {
 				Method method = clazz.getMethod("main", String.class,
-						CommandLine.class);
-				method.invoke(null, name, line);
+						CommonsCliArguments.class);
+				method.invoke(null, name, arguments);
 			}
 		} catch (NoSuchMethodException | SecurityException
 				| IllegalAccessException | IllegalArgumentException e) {

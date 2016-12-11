@@ -92,7 +92,8 @@ public class ArgumentParser
 		Options options = commonsOptions.getOptions();
 		try {
 			CommandLine line = new DefaultParser().parse(options, args);
-			CommonsCliArguments arguments = new CommonsCliArguments(line);
+			CommonsCliArguments arguments = new CommonsCliArguments(
+					commonsOptions, line);
 			return new ExecutionData(name, arguments, delegate);
 		} catch (ParseException e) {
 			error(e, commonsOptions, name);

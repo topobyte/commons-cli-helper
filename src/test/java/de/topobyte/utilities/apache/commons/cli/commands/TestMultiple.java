@@ -31,6 +31,8 @@ public class TestMultiple
 		test(new String[] { "remote", "add" });
 		test(new String[] { "remote", "rename" });
 		test(new String[] { "remote", "remove" });
+		test(new String[] { "remote", "remove", "origin" });
+		test(new String[] { "remote", "remove", "origin", "foo" });
 		test(new String[] { "foo" });
 		test(new String[] { "remote", "foo" });
 		test(new String[] { "remote", "add", "-t", "master" });
@@ -39,6 +41,7 @@ public class TestMultiple
 		test(new String[] { "remote", "rename", "-y" });
 		test(new String[] { "stash", "show" });
 		test(new String[] { "stash", "show", "test" });
+		test(new String[] { "stash", "list" });
 	}
 
 	public static void test(String[] args) throws RunnerException

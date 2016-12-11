@@ -17,9 +17,12 @@
 
 package de.topobyte.utilities.apache.commons.cli.commands;
 
+import java.util.List;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Options;
 
+import de.topobyte.utilities.apache.commons.cli.commands.args.CommonsCliArguments;
 import de.topobyte.utilities.apache.commons.cli.commands.options.CommonsCliExeOptions;
 import de.topobyte.utilities.apache.commons.cli.commands.options.ExeOptions;
 import de.topobyte.utilities.apache.commons.cli.commands.options.ExeOptionsFactory;
@@ -33,14 +36,28 @@ public class GitRemoteRemove
 		public ExeOptions createOptions()
 		{
 			Options options = new Options();
-			return new CommonsCliExeOptions(options);
+			return new CommonsCliExeOptions(options, "<name>");
 		}
 
 	};
 
-	public static void main(String name, CommandLine line)
+	public static void main(String name, CommonsCliArguments arguments)
 	{
 		System.out.println(String.format("This is '%s'", name));
+		CommandLine line = arguments.getLine();
+		List<String> extra = line.getArgList();
+		if (extra.size() != 1) {
+			if (extra.size() == 0) {
+				System.out.println("Please specify a name");
+			} else {
+				System.out.println("Too many arguments");
+			}
+			arguments.getOptions().usage(name);
+			return;
+		}
+
+		String remote = extra.get(0);
+		System.out.println("remote name: " + remote);
 	}
 
 }

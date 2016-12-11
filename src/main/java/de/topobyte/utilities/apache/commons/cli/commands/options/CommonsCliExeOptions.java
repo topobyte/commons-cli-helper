@@ -24,10 +24,12 @@ public class CommonsCliExeOptions implements ExeOptions
 {
 
 	private Options options;
+	private String usageSuffix;
 
-	public CommonsCliExeOptions(Options options)
+	public CommonsCliExeOptions(Options options, String usageSuffix)
 	{
 		this.options = options;
+		this.usageSuffix = usageSuffix;
 	}
 
 	public Options getOptions()
@@ -39,10 +41,10 @@ public class CommonsCliExeOptions implements ExeOptions
 	public void usage(String name)
 	{
 		String syntax;
-		if (options.getOptions().isEmpty()) {
+		if (usageSuffix == null) {
 			syntax = name;
 		} else {
-			syntax = name + " [options]";
+			syntax = name + " " + usageSuffix;
 		}
 		new HelpFormatter().printHelp(syntax, options);
 	}

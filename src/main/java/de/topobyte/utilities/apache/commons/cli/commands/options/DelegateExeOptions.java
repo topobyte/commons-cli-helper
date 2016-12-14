@@ -52,6 +52,14 @@ public class DelegateExeOptions implements ExeOptions
 		optionFactories.put(command, delegateOptions);
 	}
 
+	public void addCommand(String command, Class<?> clazz)
+	{
+		commandNames.add(command);
+		commands.add(command);
+		optionFactories.put(command, OptionFactories.NO_OPTIONS);
+		delegates.put(command, new DelegateClass(clazz, true));
+	}
+
 	public void addCommand(String command, ExeOptionsFactory delegateOptions,
 			Class<?> clazz)
 	{

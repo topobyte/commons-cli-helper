@@ -32,11 +32,39 @@ public class CliTool
 		this.options = options;
 	}
 
+	public void printHelpAndExit()
+	{
+		printHelpAndExit(1);
+	}
+
+	public void printHelpAndExit(int exitCode)
+	{
+		new HelpFormatter().printHelp(helpMessage, options);
+		System.exit(exitCode);
+	}
+
 	public void printMessageAndHelpAndExit(String message)
 	{
+		printMessageAndHelpAndExit(1, message);
+	}
+
+	public void printMessageAndHelpAndExit(int exitCode, String message)
+	{
 		System.out.println(message);
-		new HelpFormatter().printHelp(helpMessage, options);
-		System.exit(1);
+		printHelpAndExit(exitCode);
+	}
+
+	public void printMessagesAndHelpAndExit(String... messages)
+	{
+		printMessagesAndHelpAndExit(1, messages);
+	}
+
+	public void printMessagesAndHelpAndExit(int exitCode, String... messages)
+	{
+		for (String message : messages) {
+			System.out.println(message);
+		}
+		printHelpAndExit(exitCode);
 	}
 
 }

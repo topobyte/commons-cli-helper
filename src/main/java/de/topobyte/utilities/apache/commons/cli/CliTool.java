@@ -32,33 +32,84 @@ public class CliTool
 		this.options = options;
 	}
 
+	/**
+	 * Prints the help message and terminates the JVM with the specified exit
+	 * code.
+	 * 
+	 * Same as calling {@link #printHelpAndExit(int)} with an exit code of 1.
+	 */
 	public void printHelpAndExit()
 	{
 		printHelpAndExit(1);
 	}
 
+	/**
+	 * Prints the help message and terminates the JVM with the specified exit
+	 * code.
+	 * 
+	 * @param exitCode
+	 *            the exit code to use for {@link System#exit(int)}
+	 */
 	public void printHelpAndExit(int exitCode)
 	{
 		new HelpFormatter().printHelp(helpMessage, options);
 		System.exit(exitCode);
 	}
 
+	/**
+	 * Prints the specified message, followed by the help message and terminates
+	 * the JVM with an exit code of 1.
+	 * 
+	 * Same as calling {@link #printMessageAndHelpAndExit(int, String)} with an
+	 * exit code of 1.
+	 * 
+	 * @param message
+	 *            the line to print in front of the help message
+	 */
 	public void printMessageAndHelpAndExit(String message)
 	{
 		printMessageAndHelpAndExit(1, message);
 	}
 
+	/**
+	 * Prints the specified message, followed by the help message and terminates
+	 * the JVM with the specified exit code.
+	 * 
+	 * @param exitCode
+	 *            the exit code to use for {@link System#exit(int)}
+	 * @param message
+	 *            the line to print in front of the help message
+	 */
 	public void printMessageAndHelpAndExit(int exitCode, String message)
 	{
 		System.out.println(message);
 		printHelpAndExit(exitCode);
 	}
 
+	/**
+	 * Prints the specified messages, followed by the help message and
+	 * terminates the JVM with an exit code of 1.
+	 * 
+	 * Same as calling {@link #printMessagesAndHelpAndExit(int, String...)} with
+	 * an exit code of 1.
+	 * 
+	 * @param messages
+	 *            the lines to print in front of the help message
+	 */
 	public void printMessagesAndHelpAndExit(String... messages)
 	{
 		printMessagesAndHelpAndExit(1, messages);
 	}
 
+	/**
+	 * Prints the specified messages, followed by the help message and
+	 * terminates the JVM with the specified exit code.
+	 * 
+	 * @param exitCode
+	 *            the exit code to use for {@link System#exit(int)}
+	 * @param messages
+	 *            the lines to print in front of the help message
+	 */
 	public void printMessagesAndHelpAndExit(int exitCode, String... messages)
 	{
 		for (String message : messages) {

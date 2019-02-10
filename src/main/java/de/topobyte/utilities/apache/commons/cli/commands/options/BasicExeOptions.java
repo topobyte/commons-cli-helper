@@ -17,6 +17,8 @@
 
 package de.topobyte.utilities.apache.commons.cli.commands.options;
 
+import de.topobyte.utilities.apache.commons.cli.CliTool;
+
 public class BasicExeOptions implements ExeOptions
 {
 
@@ -32,6 +34,11 @@ public class BasicExeOptions implements ExeOptions
 		this.usage = usage;
 	}
 
+	public String getUsage()
+	{
+		return usage;
+	}
+
 	@Override
 	public void usage(String name)
 	{
@@ -42,6 +49,12 @@ public class BasicExeOptions implements ExeOptions
 			syntax = name + " " + usage;
 		}
 		System.out.println(syntax);
+	}
+
+	@Override
+	public CliTool tool(String name)
+	{
+		return new CliTool(name, this);
 	}
 
 }

@@ -17,18 +17,17 @@
 
 package de.topobyte.utilities.apache.commons.cli;
 
-import org.apache.commons.cli.HelpFormatter;
-import org.apache.commons.cli.Options;
+import de.topobyte.utilities.apache.commons.cli.commands.options.ExeOptions;
 
 public class CliTool
 {
 
-	private String helpMessage;
-	private Options options;
+	private String name;
+	private ExeOptions options;
 
-	public CliTool(String helpMessage, Options options)
+	public CliTool(String name, ExeOptions options)
 	{
-		this.helpMessage = helpMessage;
+		this.name = name;
 		this.options = options;
 	}
 
@@ -114,7 +113,7 @@ public class CliTool
 	 */
 	public void printHelpAndExit(int exitCode)
 	{
-		new HelpFormatter().printHelp(helpMessage, options);
+		options.usage(name);
 		System.exit(exitCode);
 	}
 

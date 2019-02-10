@@ -17,9 +17,13 @@
 
 package de.topobyte.utilities.apache.commons.cli.commands.options;
 
+import de.topobyte.utilities.apache.commons.cli.CliTool;
+
 public interface ExeOptions
 {
 
 	public void usage(String name);
+
+	public CliTool tool(String name);
 
 }

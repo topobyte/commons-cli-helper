@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import de.topobyte.utilities.apache.commons.cli.CliTool;
 import de.topobyte.utilities.apache.commons.cli.commands.delegate.Delegate;
 import de.topobyte.utilities.apache.commons.cli.commands.delegate.DelegateClass;
 
@@ -38,6 +39,12 @@ public class DelegateExeOptions implements ExeOptions
 		for (String command : commands) {
 			System.out.println("   " + command);
 		}
+	}
+
+	@Override
+	public CliTool tool(String name)
+	{
+		return new CliTool(name, this);
 	}
 
 	private Set<String> commandNames = new HashSet<>();

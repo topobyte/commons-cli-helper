@@ -20,6 +20,8 @@ package de.topobyte.utilities.apache.commons.cli.commands.options;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 
+import de.topobyte.utilities.apache.commons.cli.CliTool;
+
 public class CommonsCliExeOptions implements ExeOptions
 {
 
@@ -37,6 +39,11 @@ public class CommonsCliExeOptions implements ExeOptions
 		return options;
 	}
 
+	public String getUsageSuffix()
+	{
+		return usageSuffix;
+	}
+
 	@Override
 	public void usage(String name)
 	{
@@ -47,6 +54,12 @@ public class CommonsCliExeOptions implements ExeOptions
 			syntax = name + " " + usageSuffix;
 		}
 		new HelpFormatter().printHelp(syntax, options);
+	}
+
+	@Override
+	public CliTool tool(String name)
+	{
+		return new CliTool(name, this);
 	}
 
 }

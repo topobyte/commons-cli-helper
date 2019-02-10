@@ -33,6 +33,68 @@ public class CliTool
 	}
 
 	/**
+	 * Prints the specified message and terminates the JVM with an exit code of
+	 * 1.
+	 * 
+	 * Same as calling {@link #printMessageAndExit(int, String)} with an exit
+	 * code of 1.
+	 * 
+	 * @param message
+	 *            the line to print
+	 */
+	public void printMessageAndExit(String message)
+	{
+		printMessageAndExit(1, message);
+	}
+
+	/**
+	 * Prints the specified message and terminates the JVM with the specified
+	 * exit code.
+	 * 
+	 * @param exitCode
+	 *            the exit code to use for {@link System#exit(int)}
+	 * @param message
+	 *            the line to print
+	 */
+	public void printMessageAndExit(int exitCode, String message)
+	{
+		System.out.println(message);
+		System.exit(exitCode);
+	}
+
+	/**
+	 * Prints the specified messages and terminates the JVM with an exit code of
+	 * 1.
+	 * 
+	 * Same as calling {@link #printMessagesAndExit(int, String...)} with an
+	 * exit code of 1.
+	 * 
+	 * @param messages
+	 *            the lines to print
+	 */
+	public void printMessagesAndExit(String... messages)
+	{
+		printMessagesAndExit(1, messages);
+	}
+
+	/**
+	 * Prints the specified messages and terminates the JVM with the specified
+	 * exit code.
+	 * 
+	 * @param exitCode
+	 *            the exit code to use for {@link System#exit(int)}
+	 * @param messages
+	 *            the lines to print
+	 */
+	public void printMessagesAndExit(int exitCode, String... messages)
+	{
+		for (String message : messages) {
+			System.out.println(message);
+		}
+		System.exit(exitCode);
+	}
+
+	/**
 	 * Prints the help message and terminates the JVM with the specified exit
 	 * code.
 	 * 

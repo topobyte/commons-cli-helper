@@ -91,7 +91,9 @@ public class ArgumentParser
 	{
 		Options options = commonsOptions.getOptions();
 		try {
-			CommandLine line = new DefaultParser().parse(options, args);
+			DefaultParser parser = DefaultParser.builder()
+					.setStripLeadingAndTrailingQuotes(false).build();
+			CommandLine line = parser.parse(options, args);
 			CommonsCliArguments arguments = new CommonsCliArguments(
 					commonsOptions, line);
 			return new ExecutionData(name, arguments, delegate);

@@ -86,7 +86,9 @@ public class TestQuotes
 		OptionHelper.addL(options, "foo", true, true, "an option");
 
 		String[] arguments = new String[] { "-foo", value };
-		CommandLine line = new DefaultParser().parse(options, arguments);
+		DefaultParser parser = DefaultParser.builder()
+				.setStripLeadingAndTrailingQuotes(false).build();
+		CommandLine line = parser.parse(options, arguments);
 
 		StringOption foo = ArgumentHelper.getString(line, "foo");
 
